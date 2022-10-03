@@ -4,6 +4,7 @@ import java.util.List;
 
 import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,9 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private ModelMapper modelMapper;
 	
 	@Override
 	public UserVo createUser(UserVo userVo) {
@@ -62,20 +66,20 @@ public class UserServiceImpl implements UserService {
 	}
 
 	private User dtoToUser(UserVo userVo) {
-		User user = new User();
-		user.setUserId(userVo.getUserId());
-		user.setName(userVo.getName());
-		user.setEmail(userVo.getEmail());
-		user.setPassword(userVo.getPassword());
+		User user = this.modelMapper.map(userVo,User.class);
+//		user.setUserId(userVo.getUserId());
+//		user.setName(userVo.getName());
+//		user.setEmail(userVo.getEmail());
+//		user.setPassword(userVo.getPassword());
 		return user;
 	}
 	
 	private UserVo userToDto(User user) {
-		UserVo userVo = new UserVo();
-		userVo.setUserId(user.getUserId());
-		userVo.setName(user.getName());
-		userVo.setEmail(user.getEmail());
-		userVo.setPassword(user.getPassword());
+		UserVo userVo = this.modelMapper.map(user,UserVo.class);
+//		userVo.setUserId(user.getUserId());
+//		userVo.setName(user.getName());
+//		userVo.setEmail(user.getEmail());
+//		userVo.setPassword(user.getPassword());
 		return userVo;
 	}
 }

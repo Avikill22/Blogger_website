@@ -46,4 +46,9 @@ public class UserController {
 	public ResponseEntity<List<UserVo>> getAllUserInformation(){
 		return new ResponseEntity<List<UserVo>>(this.userService.getAllUsers(),HttpStatus.FOUND);
 	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<UserVo> getUserById(@PathVariable("id") int userId){
+		return new ResponseEntity<UserVo>(this.userService.getUserByUserId(userId),HttpStatus.FOUND);
+	}
 }
