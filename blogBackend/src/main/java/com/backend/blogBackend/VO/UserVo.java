@@ -21,8 +21,8 @@ public class UserVo {
 	private String email;
 	
 	@NotEmpty
-	@Size(min=6,message="Password lenght should be more than 3.")
-	@Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&])(?=\\S+$).{6, 20}$")
+	@Size(min=6,message="Password length should be more than 6.")
+	@Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&!])(?=\\S+$).{6,20}$")
 	private String password;
 
 	public UserVo() {
